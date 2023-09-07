@@ -27,45 +27,43 @@ const Register = () => {
     const { name, email, password, image } = data;
     console.log(data);
 
-    // const userPhoto = image.files[0];
-    // const formData = new FormData();
-    // formData.append("photo", userPhoto);
-    console.log(image.fileList);
+    const userPhoto = image[0];
+    const formData = new FormData();
+    formData.append("photo", userPhoto);
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_ImgBB_Key
+      }`;
+    console.log(url);
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const imageUrl = imageData.data.display_url;
+        console.log(imageData);
 
-  //   const url = `https://api.imgbb.com/1/upload?key=${
-  //     import.meta.env.VITE_IMGBB_KEY
-  //   }`;
-  //   fetch(url, {
-  //     method: "POST",
-  //     body: formData,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((imageData) => {
-  //       const imageUrl = imageData.data.display_url;
-  //       console.log(data);
-
-  //       // createUser(email, password)
-  //       //   .then((result) => {
-  //       //     updateUserProfile(name, imageUrl)
-  //       //       .then(() => {
-  //       //         saveUser(result.user);
-  //       //         navigate(from, { replace: true });
-  //       //       })
-  //       //       .catch((err) => {
-  //       //         setLoading(false);
-  //       //         console.log(err.message);
-  //       //       });
-  //       //   })
-  //       //   .catch((err) => {
-  //       //     setLoading(false);
-  //       //     console.log(err.message);
-  //       //   });
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       console.log(err.message);
-  //     });
-  //   console.log(data);
+        createUser(email, password)
+          .then((result) => {
+            updateUserProfile(name, imageUrl)
+              .then(() => {
+                saveUser(result.user);
+                navigate(from, { replace: true });
+              })
+              .catch((err) => {
+                setLoading(false);
+                console.log(err.message);
+              });
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err.message);
+          });
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err.message);
+      });
   };
 
   const handleGoogleSignIn = () => {

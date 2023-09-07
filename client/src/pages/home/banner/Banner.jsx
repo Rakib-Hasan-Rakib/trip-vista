@@ -1,46 +1,71 @@
 import React from "react";
 import "./Banner.css";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectFade, Navigation, Pagination } from "swiper/modules";
-import Image from "../../../components/image/Image";
-import Container from "../../../components/Container";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import tiger from "/public/videos/tiger.mp4";
+import waterfall from "/public/videos/waterfall.mp4";
+import hill from "/public/videos/hill.mp4";
+import BannerText from "./BannerText";
 
 const Banner = () => {
   return (
     <>
-        <Swiper
-          spaceBetween={30}
-          effect={"fade"}
-          navigation={true}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[EffectFade, Navigation, Pagination]}
-          className="mySwiper h-[80vh] my-4"
-        >
-          <SwiperSlide>
-            <Image source="https://i.ibb.co/1MnCzSW/sundarban.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image source="https://i.ibb.co/YjJcFrR/bisnakandi.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image source="https://i.ibb.co/NVr8XBH/ahsan-monjil.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image source="https://i.ibb.co/DbtdCzd/rangamati.jpg" />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Image source="https://i.ibb.co/2hMDZbQ/md-sameul-9-Uqze-QYk-Cgg-unsplash.jpg" />
-          </SwiperSlide>
-        </Swiper>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true
+        }}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper my-2 rounded-lg"
+      >
+        <SwiperSlide className=" relative">
+          <video autoPlay loop muted className="h-full w-full">
+            <source src={tiger} type="video/mp4" />
+          </video>
+          <div className="banner-text bg-black bg-opacity-70 h-full w-full absolute top-0 left-0">
+            <BannerText
+              title="Sundarbans Safari"
+              subtitle="where nature meets adventure"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <video
+            autoPlay
+            loop
+            muted
+            className="background-video w-full h-[100%]"
+          >
+            <source src={hill} type="video/mp4" />
+          </video>
+          <div className="banner-text bg-black bg-opacity-50 h-full w-full absolute top-0 left-0">
+            <BannerText
+              title="Sajek Valley"
+              subtitle="where heaven meets earth"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <video autoPlay loop muted className="background-video">
+            <source src={waterfall} type="video/mp4" />
+          </video>
+          <div className="banner-text bg-black bg-opacity-50 h-full w-full absolute top-0 left-0">
+            <BannerText
+              title="Bandarban Waterfall"
+              subtitle="nature's liquid poetry"
+            />
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 };
