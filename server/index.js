@@ -56,7 +56,7 @@ async function run() {
         })
         // get best selling tours
         app.get('/spots/bestSelling', async (req, res) => {
-            const result = await spotsCollection.find().sort({ booked: -1 }).limit(6).toArray()
+            const result = await spotsCollection.find().sort({ booked: -1 }).limit(4).toArray()
             res.send(result)
         })
         // get low price tours 

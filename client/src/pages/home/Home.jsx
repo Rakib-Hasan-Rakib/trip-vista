@@ -5,6 +5,7 @@ import Container from "../../components/Container";
 import BestSelling from "./best-selling/BestSelling";
 import LowPrice from "./low-price/LowPrice";
 import Category from "./category/Category";
+import Speciality from "./speciality/Speciality";
 
 const Home = () => {
   return (
@@ -13,8 +14,9 @@ const Home = () => {
       <Container>
         <Trending />
         <Category />
+        <Speciality />
         <BestSelling />
-        <LowPrice />
+        {/* <LowPrice /> */}
       </Container>
     </div>
   );

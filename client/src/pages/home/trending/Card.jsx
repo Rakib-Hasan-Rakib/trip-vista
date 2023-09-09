@@ -7,7 +7,6 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
 const Card = ({ tour }) => {
-  console.log(tour);
   const { _id, photo, name, duration, price } = tour;
   return (
     <div className="bg-gray-50 rounded-lg lg:rounded-xl p-3 space-y-4">

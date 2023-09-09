@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/button/Button";
-import AnimatedText from "react-animated-text-content";
 
 const BannerText = ({ title, subtitle }) => {
   return (
