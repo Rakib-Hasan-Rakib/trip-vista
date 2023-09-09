@@ -13,7 +13,7 @@ const TourInfo = () => {
         setTourDetails(data);
       });
   }, [id]);
-  console.log(tourDetails);
+  // console.log(tourDetails);
   const { duration, location, price, departure_time, departure_location,age} =
     tourDetails;
   return (

@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { saveUser } from "../../utils/auth";
+import './Login.css'
 
 const Login = () => {
   const { signInWithGoogle, setLoading } = useContext(AuthContext);
@@ -25,12 +26,12 @@ const Login = () => {
       });
   };
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+    <div className="flex justify-center items-center min-h-screen login-div">
+      <div className="flex flex-col max-w-lg p-6 sm:p-10 text-black rounded-xl bg-gray-300 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-sm max-sm:px-8">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm text-gray-400">
-            Sign in to access your account
+          <p className="text-sm">
+            Login to access your account
           </p>
         </div>
         <form
@@ -40,7 +41,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block mb-2 text-md">
                 Email address
               </label>
               <input
@@ -49,13 +50,13 @@ const Login = () => {
                 id="email"
                 required
                 placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 rounded-md focus:outline-none bg-gray-200 placeholder:text-gray-500"
                 data-temp-mail-org="0"
               />
             </div>
             <div>
               <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm mb-2">
+                <label htmlFor="password" className="text-md mb-2">
                   Password
                 </label>
               </div>
@@ -65,7 +66,7 @@ const Login = () => {
                 id="password"
                 required
                 placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 rounded-md focus:outline-none bg-gray-200 placeholder:text-gray-900"
               />
             </div>
           </div>
@@ -73,7 +74,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="bg-rose-500 w-full rounded-md py-3 text-white"
+              className="bg-sky-400 w-full rounded-md py-3 font-semibold"
             >
               Continue
             </button>
@@ -93,17 +94,17 @@ const Login = () => {
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded-md cursor-pointer"
         >
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
         </div>
-        <p className="px-6 text-sm text-center text-gray-400">
-          Don't have an account yet?{" "}
+        <p className="px-6 text-md text-center">
+          Don't have an account yet?
           <Link
             to="/register"
-            className="hover:underline hover:text-rose-500 text-gray-600"
+            className="text-sky-700 hover:underline"
           >
             Register
           </Link>
