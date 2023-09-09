@@ -22,13 +22,13 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         pagination={{
-          clickable: true
+          clickable: true,
         }}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper my-2 rounded-lg"
+        className="mySwiper mb-2 rounded-lg h-full"
       >
         <SwiperSlide className=" relative">
-          <video autoPlay loop muted className="h-full w-full">
+          <video autoPlay loop muted className="h-[100%] w-full">
             <source src={tiger} type="video/mp4" />
           </video>
           <div className="banner-text bg-black bg-opacity-70 h-full w-full absolute top-0 left-0">
@@ -55,7 +55,12 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <video autoPlay loop muted className="background-video">
+          <video
+            autoPlay
+            loop
+            muted
+            className="background-video h-[100%] w-full"
+          >
             <source src={waterfall} type="video/mp4" />
           </video>
           <div className="banner-text bg-black bg-opacity-50 h-full w-full absolute top-0 left-0">
