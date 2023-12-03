@@ -5,6 +5,7 @@ import { FaPersonSkating } from "react-icons/fa6";
 import { LuHotel } from "react-icons/lu";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import Like from "../../../components/like/Like";
 
 const Card = ({ tour }) => {
   const { _id, photo, name, duration, price } = tour;
@@ -16,17 +17,14 @@ const Card = ({ tour }) => {
           src={photo}
           alt="image of places"
         />
-        <AiOutlineHeart
-          size={28}
-          className="absolute top-3 right-3 text-red-600"
-        />
+        <Like placeId = {_id} />
       </div>
       <div>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <h2 className="text-xl md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
             {name}
           </h2>
-          <p>rating</p>
+          <p>4.9</p>
         </div>
         <p className="font-semibold text-gray-700">{duration}</p>
       </div>

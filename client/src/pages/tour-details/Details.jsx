@@ -30,7 +30,7 @@ const Details = () => {
 
       <div className="flex flex-col-reverse lg:flex-row justify-between mt-8 gap-4 md:gap-8">
         <div className="basis-1/3">
-          <DetailsForm />
+          <DetailsForm tourDetails={tourDetails} />
         </div>
         <div className="w-full mx-auto basis-1/2">
           <DetailsNav />

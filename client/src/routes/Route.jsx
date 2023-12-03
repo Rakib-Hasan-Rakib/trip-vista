@@ -9,6 +9,7 @@ import Register from "../pages/register/Register";
 import Details from "../pages/tour-details/Details";
 import SpotHistory from "../pages/tour-details/spot-history/SpotHistory";
 import TourInfo from "../pages/tour-details/tour-info/TourInfo";
+import DashLayout from "../layouts/DashLayout";
 
 const Route = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const Route = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path: "/dashboard", element: <DashLayout /> },
 ]);
 
 export default Route;

@@ -7,10 +7,25 @@ import { saveUser } from "../../utils/auth";
 import './Login.css'
 
 const Login = () => {
-  const { signInWithGoogle, setLoading } = useContext(AuthContext);
+  const { signInWithGoogle, setLoading,signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+   const handleSubmit = (e) => {
+     e.preventDefault();
+     const email = e.target.email.value;
+     const password = e.target.password.value;
+     signIn(email, password)
+       .then((result) => {
+         console.log(result.user);
+         navigate(from, { replace: true });
+       })
+       .catch((err) => {
+         setLoading(false);
+         console.log(err.message);
+       });
+   };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -30,11 +45,10 @@ const Login = () => {
       <div className="flex flex-col max-w-lg p-6 sm:p-10 text-black rounded-xl bg-gray-300 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-sm max-sm:px-8">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm">
-            Login to access your account
-          </p>
+          <p className="text-sm">Login to access your account</p>
         </div>
         <form
+          onSubmit={handleSubmit}
           noValidate=""
           action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -102,10 +116,7 @@ const Login = () => {
         </div>
         <p className="px-6 text-md text-center">
           Don't have an account yet?
-          <Link
-            to="/register"
-            className="text-sky-700 hover:underline"
-          >
+          <Link to="/register" className="text-sky-700 hover:underline">
             Register
           </Link>
           .

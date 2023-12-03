@@ -4,5 +4,8 @@
 
 
 .active{
-    @apply text-green-600 border-b border-b-green-600
+    @apply text-green-600 font-semibold
+}
+.default{
+    @apply text-white font-semibold
 }

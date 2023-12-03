@@ -45,7 +45,7 @@ const Register = () => {
         createUser(email, password)
           .then((result) => {
             updateUserProfile(name, imageUrl)
-              .then(() => {
+              .then(() => { 
                 saveUser(result.user);
                 navigate(from, { replace: true });
               })
