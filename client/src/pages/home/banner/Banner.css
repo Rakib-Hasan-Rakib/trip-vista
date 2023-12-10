@@ -4,7 +4,6 @@
   font-family: "Ubuntu", sans-serif;
 }
 
-.swiper-pagination-bullet{
-   background-color: white;
-   color: white;
+.swiper-pagination-bullet-active{
+   background-color: white !important;
 }

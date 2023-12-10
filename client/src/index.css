@@ -9,3 +9,9 @@
 .default{
     @apply text-white font-semibold
 }
+.btn-danger{
+    @apply text-white bg-red-600 px-4 py-1 rounded-md font-semibold my-2 cursor-pointer
+}
+.btn-success{
+    @apply text-white bg-green-500 px-4 py-1 rounded-md font-semibold my-2 cursor-pointer
+}
