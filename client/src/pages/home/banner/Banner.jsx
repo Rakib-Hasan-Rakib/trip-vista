@@ -6,9 +6,9 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import tiger from "/public/videos/tiger.mp4";
-import waterfall from "/public/videos/waterfall.mp4";
-import hill from "/public/videos/hill.mp4";
+import tiger from '../../../assets/videos/tiger.mp4'
+import waterfall from "../../../assets/videos/waterfall.mp4";
+import hill from "../../../assets/videos/hill.mp4";
 import BannerText from "./BannerText";
 
 const Banner = () => {

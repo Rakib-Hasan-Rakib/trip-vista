@@ -45,7 +45,6 @@ async function run() {
         $set: user,
       };
       const result = await usersCollection.updateOne(query, updateDoc, options);
-      console.log(result);
       res.send(result);
     });
 
@@ -111,7 +110,6 @@ async function run() {
         _id: new ObjectId(userData?.productId),
       });
       const amount = tourDetails?.price * userData?.quantity;
-      console.log(userData);
       const data = {
         total_amount: amount,
         currency: "BDT",
@@ -170,6 +168,16 @@ async function run() {
     app.post("/blogs", async (req, res) => {
       const blogData = req.body;
       const result = await blogCollection.insertOne(blogData);
+      res.send(result);
+    });
+    app.get("/blogs", async (req, res) => {
+      const result = await blogCollection.find().toArray();
+      res.send(result);
+    });
+    app.get("/blogs/:id", async (req, res) => {
+      const id = req.params;
+      const query = { _id: new ObjectId(id) };
+      const result = await blogCollection.findOne(query);
       res.send(result);
     });
 

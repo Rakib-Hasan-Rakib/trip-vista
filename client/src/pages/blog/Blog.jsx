@@ -1,28 +1,46 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Container from "../../components/Container";
-import { MdEditDocument } from "react-icons/md";
-import BlogModal from "../../components/modal/BlogModal";
 
-const Blog = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+const Blog = ({ blog }) => {
+  // console.log(blog)
+  const { _id, image, title, tagLine, description, userPhoto } = blog;
+
+  const str = "Bangladesh's Pristine Tropical Escape";
+  let arr = str.split("");
+  console.log(arr.length);
 
   return (
-    <Container>
-      <div className="pt-24">
-        <div className="flex justify-end">
-          <button onClick={openModal} className="flex justify-center items-center gap-2 text-lg font-semibold bg-green-500 hover:bg-green-600 hover:duration-300 text-white px-3 py-1 rounded-md">
-            <MdEditDocument className="" size={24} />
-            Write a blog
-          </button>
-        </div>
-        <BlogModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+    <>
+      <div className="group  border border-gray-500 rounded-md">
+        <Link to={`/blog/${_id}`} className="space-y-2 ">
+          <img
+            src={image}
+            alt="spot image"
+            className="w-full h-40 md:h-48 lg:h-60 2xl:h-96 object-cover object-center rounded-md"
+          />
+          <div className="px-2">
+            <div>
+              <h2 className="font-bold text-lg md:text-xl lg:text-2xl capitalize">
+                {title}
+              </h2>
+              <p className="capitalize text-gray-600">
+                <i>{tagLine}</i>
+              </p>
+            </div>
+            <div>
+              <img
+                src={userPhoto}
+                alt="photo of author"
+                className="w-10 h-10 rounded-full"
+              />
+            </div>
+            <p className="text-justify">
+              {description.slice(0, 200)}{" "}
+              <small className="text-blue-600">read more...</small>
+            </p>
+          </div>
+        </Link>
       </div>
-    </Container>
+    </>
   );
 };
-
 export default Blog;
