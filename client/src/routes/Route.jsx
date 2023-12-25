@@ -11,6 +11,8 @@ import TourInfo from "../pages/tour-details/tour-info/TourInfo";
 import DashLayout from "../layouts/DashLayout";
 import Blogs from "../pages/blog/Blogs";
 import BlogDetails from "../pages/blog/BlogDetails";
+import WriteBlog from "../pages/blog/WriteBlog";
+import PrivateRoute from "./PrivateRoute";
 
 const Route = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const Route = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/dashboard", element: <DashLayout /> },
+  {
+    path: "/writeBlog",
+    element: (
+      <PrivateRoute>
+        <WriteBlog />
+      </PrivateRoute>
+    ),
+  },
 ]);
 
 export default Route;
