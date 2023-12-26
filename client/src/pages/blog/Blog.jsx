@@ -10,7 +10,7 @@ const Blog = ({ blog }) => {
 
   return (
     <>
-      <div className="group  border border-gray-500 rounded-md">
+      <div className="group  border border-gray-300 rounded-md">
         <Link to={`/blog/${_id}`} className="space-y-3 ">
           <img
             src={image}
@@ -36,9 +36,6 @@ const Blog = ({ blog }) => {
             <p className="text-justify pb-2">
               {description.slice(0, 200)}
               <span>....</span>
-              {/* <small className=" hover:border-b hover:border-b-sky-500 hover:duration-500 ease-in-out">
-                ...
-              </small> */}
             </p>
           </div>
         </Link>

@@ -22,51 +22,45 @@ const BlogDetails = () => {
             <img
               src={image}
               alt="spot image"
-              className="w-1/2 mx-auto rounded-lg"
+              className="w-full lg:w-3/4 mx-auto rounded-lg"
             />
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-xl md:text-3xl lg:text-6xl 2xl:text-8xl font-bold tracking-widest capitalize">
-                  {title}
-                </h1>
-                <p className="text-lg md:text-xl lg:text-2xl 2xl:text-4xl italic text-gray-700 tracking-wider">
-                  {tagLine}
-                </p>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-normal items-center gap-4">
-                  <p className="font-semibold text-xl">{name}</p>
-                  <img
-                    src={userPhoto}
-                    alt="author's photo"
-                    className="w-12 rounded-full"
-                  />
-                </div>
-                <div className="flex justify-end items-center gap-3">
-                  <Link to={facebook} target="_blank" rel="noopener noreferrer">
-                    <img
-                      src="https://i.ibb.co/Jypsrh5/facebook-icon.png"
-                      alt="facebook icon"
-                      className="w-10 rounded-full"
-                    />
-                  </Link>
-                  <Link
-                    to={instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src="https://i.ibb.co/kKZQKKg/instagram-icon.png"
-                      alt="facebook icon"
-                      className="w-10"
-                    />
-                  </Link>
-                </div>
-              </div>
+            <div>
+              <h1 className="text-2xl md:text-3xl lg:text-6xl 2xl:text-8xl font-bold tracking-widest capitalize">
+                {title}
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl 2xl:text-4xl italic text-gray-700 tracking-wider my-1">
+                {tagLine}
+              </p>
             </div>
-            <p className="tracking-wider leading-loose text-lg text-justify">
+
+            <p className="md:tracking-wider leading-loose text-lg text-justify">
               {description}
             </p>
+            <div className="space-y-1 md:space-y-2">
+              <p className="font-bold text-lg mt-12">Written By</p>
+                <img
+                  src={userPhoto}
+                  alt="author's photo"
+                  className="w-24 md:w-32 rounded-lg"
+                />
+                <p className="font-semibold">{name}</p>
+              <div className="flex items-center gap-3">
+                <Link to={facebook} target="_blank" rel="noopener noreferrer" title="visit my facebook profile">
+                  <img
+                    src="https://i.ibb.co/Jypsrh5/facebook-icon.png"
+                    alt="facebook icon"
+                    className="w-8 rounded-full"
+                  />
+                </Link>
+                <Link to={instagram} target="_blank" rel="noopener noreferrer" title="visit my instagram profile">
+                  <img
+                    src="https://i.ibb.co/kKZQKKg/instagram-icon.png"
+                    alt="facebook icon"
+                    className="w-8"
+                  />
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       )}

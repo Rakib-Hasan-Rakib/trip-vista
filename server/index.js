@@ -35,6 +35,10 @@ async function run() {
     const bookingsCollection = client.db("tourza").collection("bookings");
     const blogCollection = client.db("tourza").collection("blogs");
 
+    // const indexKey = { name: 1 };
+    // const indexOption = { name: "title" };
+    // const indexResult = await blogCollection.createIndex(indexKey, indexOption);
+
     // Save user email and role in DB
     app.put("/users/:email", async (req, res) => {
       const email = req.params.email;
@@ -179,6 +183,18 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = await blogCollection.findOne(query);
       res.send(result);
+    });
+    app.get("/blogSerch/:text", async (req, res) => {
+      const searchText = req.params.text;
+      const result = await blogCollection
+        .find({ title: { $regex: searchText, $options: "i" } })
+        .toArray();
+
+      if (result.length < 1) {
+        res.send({ message: "No data found" });
+      } else {
+        res.send(result);
+      }
     });
 
     // Send a ping to confirm a successful connection
