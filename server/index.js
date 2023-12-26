@@ -52,6 +52,18 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/spots", async (req, res) => {
+      const result = await spotsCollection.find().sort({ _id: -1 }).toArray();
+      res.send(result);
+    });
+    app.get("/place/:category", async (req, res) => {
+      const category = req.params.category;
+      const result = await spotsCollection
+        .find({ category: category })
+        .sort({ _id: -1 })
+        .toArray();
+      res.send(result);
+    });
     // get trending tourist spot
     app.get("/spots/trending", async (req, res) => {
       const query = { trending: true };

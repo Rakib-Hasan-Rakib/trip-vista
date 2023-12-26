@@ -37,18 +37,18 @@ const Blogs = () => {
             type="text"
             name="searchText"
             placeholder="Enter a place name you want to read about"
-            className="w-full p-1 border-2 border-green-500 border-r-0 rounded-s-md focus:outline-none"
+            className="w-full p-1 border-2 border-sky-500 border-r-0 rounded-s-md focus:outline-none"
             ref={inputRef}
           />
           <FaSearch
             onClick={handleSearch}
-            className="bg-green-600 text-white px-2 rounded-e-md cursor-pointer"
+            className="bg-sky-500 text-white px-2 rounded-e-md cursor-pointer"
             size={36}
           />
         </div>
         <Link to="/writeBlog">
           <MdEditDocument
-            className="bg-green-600 text-white p-3 rounded-full fixed top-3/4 right-8 cursor-pointer"
+            className="bg-sky-500 text-white p-3 rounded-full fixed top-3/4 right-8 cursor-pointer"
             size={60}
           />
         </Link>

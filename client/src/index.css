@@ -4,7 +4,7 @@
 
 
 .active{
-    @apply text-green-600 font-semibold
+    @apply text-sky-500 font-semibold
 }
 .default{
     @apply text-white font-semibold

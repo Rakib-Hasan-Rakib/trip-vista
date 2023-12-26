@@ -1,14 +1,15 @@
-import React from "react";
-import Image from "../../../components/image/Image";
 import { AiFillCar, AiOutlineHeart } from "react-icons/ai";
 import { FaPersonSkating } from "react-icons/fa6";
 import { LuHotel } from "react-icons/lu";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Like from "../../../components/like/Like";
+import Like from "../like/Like";
+import axios from "axios";
 
-const Card = ({ tour }) => {
-  const { _id, photo, name, duration, price } = tour;
+const SpotCard = ({ spot }) => {
+  const { _id, photo, name, duration, price } = spot;
+
+
   return (
     <div className="bg-gray-50 rounded-lg lg:rounded-xl p-3 space-y-4">
       <div className="relative">
@@ -17,7 +18,7 @@ const Card = ({ tour }) => {
           src={photo}
           alt="image of places"
         />
-        <Like placeId = {_id} />
+        <Like placeId={_id} />
       </div>
       <div>
         <div className="flex justify-between items-center">
@@ -51,7 +52,7 @@ const Card = ({ tour }) => {
       </div>
       <div className="flex justify-between items-center">
         <Link to={`/spot/${_id}`}>
-          <button className="border border-emerald-600 px-4 py-1 rounded-lg text-emerald-600 hover:bg-gray-200 font-semibold">
+          <button className="border border-sky-500 px-4 py-1 rounded-lg text-sky-500 hover:bg-gray-200 font-semibold">
             Details
           </button>
         </Link>
@@ -66,5 +67,4 @@ const Card = ({ tour }) => {
     </div>
   );
 };
-
-export default Card;
+export default SpotCard;

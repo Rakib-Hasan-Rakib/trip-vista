@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Ubuntu&display=swap");
 
-.banner-text {
-  font-family: "Ubuntu", sans-serif;
-}
 
 .swiper-pagination-bullet-active{
    background-color: white !important;

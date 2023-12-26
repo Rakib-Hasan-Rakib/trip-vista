@@ -13,6 +13,7 @@ import Blogs from "../pages/blog/Blogs";
 import BlogDetails from "../pages/blog/BlogDetails";
 import WriteBlog from "../pages/blog/WriteBlog";
 import PrivateRoute from "./PrivateRoute";
+import CategoryPlace from "../pages/home/category/CategoryPlace";
 
 const Route = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const Route = createBrowserRouter([
           { path: "/spot/:id/history", element: <SpotHistory /> },
         ],
       },
+      { path: "/place/:category", element: <CategoryPlace /> },
     ],
   },
   { path: "/login", element: <Login /> },
