@@ -4,7 +4,7 @@ import { LuHotel } from "react-icons/lu";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Like from "../like/Like";
-import axios from "axios";
+import { FaRegStar } from "react-icons/fa";
 
 const SpotCard = ({ spot }) => {
   const { _id, photo, name, duration, price } = spot;
@@ -25,7 +25,10 @@ const SpotCard = ({ spot }) => {
           <h2 className="text-xl md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
             {name}
           </h2>
-          <p>4.9</p>
+          <div className="flex items-center gap-2">
+            <FaRegStar size={24} className="text-black" />
+            <span className="text-lg"> 4.9</span>
+          </div>
         </div>
         <p className="font-semibold text-gray-700">{duration}</p>
       </div>

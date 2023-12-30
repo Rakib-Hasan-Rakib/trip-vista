@@ -7,11 +7,9 @@ const NavProfile = () => {
   const { user } = useContext(AuthContext);
   return (
     <img
-      className="rounded-full border border-red-600"
+      className="rounded-full w-12 cursor-pointer"
       src={user && user.photoURL ? user.photoURL : avatar}
       alt="profile"
-      height="30"
-      width="30"
     />
   );
 };

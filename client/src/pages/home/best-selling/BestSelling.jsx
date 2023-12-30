@@ -3,15 +3,18 @@ import SectionTitle from "../../../components/title/SectionTitle";
 import Image from "../../../components/image/Image";
 import { Link } from "react-router-dom";
 import BestSellingCard from "./BestSellingCard";
+import axios from "axios";
 
 const BestSelling = () => {
   const [bestSelling, setBestSelling] = useState([]);
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASE_URL}spots/bestSelling`)
-      .then((res) => res.json())
+    axios
+      .get(`${import.meta.env.VITE_BASE_URL}spots/bestSelling`)
       .then((data) => {
-        setBestSelling(data);
-      });
+        setBestSelling(data.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   // todo: responsive this section

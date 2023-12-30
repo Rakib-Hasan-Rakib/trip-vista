@@ -25,7 +25,7 @@ const Banner = () => {
           clickable: true,
         }}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper mb-2 h-full"
+        className="mySwiper mb-2 h-full -z-50"
       >
         <SwiperSlide>
           <video autoPlay loop muted className="h-[100%] w-full -z-10">

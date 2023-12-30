@@ -49,14 +49,35 @@ const Navbar = () => {
       <li onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}>
         <NavProfile />
       </li>
-      <>
-        {isProfileMenuOpen && (
-          <>
-            <li>Rakib</li>
-            <li>hasan</li>
-          </>
-        )}
-      </>
+      {isProfileMenuOpen && user && (
+        <div className="bg-white flex flex-col absolute top-16 z-50 w-24 md:w-32 rounded-md space-y-1 md:space-y-2 lg:space-y-3">
+          <Link
+            to="/dashboard"
+            className="px-2 md:px-4 py-1 hover:text-yellow-500"
+          >
+            Dashboard
+          </Link>
+          <Link
+            onClick={() => logOut()}
+            className="px-2 md:px-4 py-1 hover:text-yellow-500"
+          >
+            Logout
+          </Link>
+        </div>
+      )}
+      {isProfileMenuOpen && !user && (
+        <div className="bg-white flex flex-col absolute top-16 z-50 w-24 md:w-32 rounded-md space-y-1 md:space-y-2 lg:space-y-3">
+          <Link
+            to="/signup"
+            className="px-2 md:px-4 py-1 hover:text-yellow-400"
+          >
+            Sign Up
+          </Link>
+          <Link to="signin" className="px-2 md:px-4 py-1 hover:text-yellow-400">
+            Sign In
+          </Link>
+        </div>
+      )}
     </>
   );
   return (
