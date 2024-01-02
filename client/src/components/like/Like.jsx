@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 
 const Like = ({ placeId }) => {
   const { user } = useContext(AuthContext);
-  const [fav, setFav] = useState([]);
+  const [fav, setFav] = useState(false);
+  const [favPlace, setFavPlace] = useState([]);
 
   const handleAddToFav = () => {
     axios
@@ -14,35 +15,45 @@ const Like = ({ placeId }) => {
         placeId,
       })
       .then((data) => {
+        console.log(data.data)
         if (data.data.insertedId) {
           toast.success("This item added to your favourite list");
         }
+        if (data.data.exist) {
+          toast.success(data.data.exist);
+        }
       })
       .catch((err) => console.log(err));
+    setFav(true);
   };
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BASE_URL}favSpot/${user?.email}`)
+      .get(`${import.meta.env.VITE_BASE_URL}favPlace/${user?.email}`)
       .then((data) => {
-        setFav(data.data);
+        setFavPlace(data.data);
       })
       .catch((err) => console.log(err));
-  }, [placeId]);
+  }, [user?.email]);
+  // console.log(user);
 
   return (
     <>
-      {fav?.map((place) => {
-        place.placeId == placeId ? (
-           <AiFillHeart
-            size={28}
-            className="absolute top-3 right-3 text-red-600 cursor-pointer"
-          />
-        ) : (
-          <AiOutlineHeart
-            onClick={handleAddToFav}
-            size={28}
-            className="absolute top-3 right-3 text-red-600 cursor-pointer"
-          />
+      {favPlace?.map((place, i) => {
+        return (
+          <div key={i}>
+            {place.placeId == placeId || fav ? (
+              <AiFillHeart
+                size={28}
+                className="absolute top-3 right-3 text-red-500 cursor-pointer"
+              />
+            ) : (
+              <AiOutlineHeart
+                onClick={handleAddToFav}
+                size={28}
+                className="absolute top-3 right-3 text-red-500 cursor-pointer"
+              />
+            )}
+          </div>
         );
       })}
     </>

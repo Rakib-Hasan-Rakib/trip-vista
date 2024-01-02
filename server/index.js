@@ -100,11 +100,21 @@ async function run() {
     app.post("/favSpot/:email", async (req, res) => {
       const email = req.params.email;
       const placeId = req.body.placeId;
-      let likedPlace = { email, placeId };
-      const result = await favSpotsCollection.insertOne(likedPlace);
-      res.send(result);
+      const existFavSpot = await favSpotsCollection.findOne({
+        email: email,
+        placeId: placeId,
+      });
+      if (existFavSpot) {
+        res.send({
+          exist: "This place is already added to your favourite list",
+        });
+      } else {
+        let likedPlace = { email, placeId };
+        const result = await favSpotsCollection.insertOne(likedPlace);
+        res.send(result);
+      }
     });
-    app.get("/favSpot/:email", async (req, res) => {
+    app.get("/favPlace/:email", async (req, res) => {
       const email = req.params.email;
       const result = await favSpotsCollection.find({ email: email }).toArray();
       res.send(result);

@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+body{
+    overflow-x: hidden !important;
+}
 .active{
     @apply text-sky-500 font-semibold
 }

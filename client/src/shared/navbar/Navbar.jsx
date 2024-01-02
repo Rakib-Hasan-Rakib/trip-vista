@@ -25,6 +25,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          to="/tours"
+          className={({ isActive }) => (isActive ? "active" : "default")}
+        >
+          Tours
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/blog"
           className={({ isActive }) => (isActive ? "active" : "default")}
         >
@@ -68,13 +76,13 @@ const Navbar = () => {
       {isProfileMenuOpen && !user && (
         <div className="bg-white flex flex-col absolute top-16 z-50 w-24 md:w-32 rounded-md space-y-1 md:space-y-2 lg:space-y-3">
           <Link
-            to="/signup"
+            to="/register"
             className="px-2 md:px-4 py-1 hover:text-yellow-400"
           >
-            Sign Up
+            Register
           </Link>
-          <Link to="signin" className="px-2 md:px-4 py-1 hover:text-yellow-400">
-            Sign In
+          <Link to="/login" className="px-2 md:px-4 py-1 hover:text-yellow-400">
+           Login
           </Link>
         </div>
       )}

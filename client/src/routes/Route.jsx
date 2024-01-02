@@ -14,6 +14,7 @@ import BlogDetails from "../pages/blog/BlogDetails";
 import WriteBlog from "../pages/blog/WriteBlog";
 import PrivateRoute from "./PrivateRoute";
 import CategoryPlace from "../pages/home/category/CategoryPlace";
+import Tours from "../pages/tours/Tours";
 
 const Route = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const Route = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "/tours", element: <Tours /> },
       { path: "/blog", element: <Blogs /> },
       { path: "/blog/:id", element: <BlogDetails /> },
       { path: "/about", element: <About /> },

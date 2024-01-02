@@ -1,78 +1,109 @@
-import React from "react";
-import "./Banner.css";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  FreeMode,
+  Navigation,
+  Thumbs,
+  EffectFade,
+  Autoplay,
+} from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/effect-fade";
+import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import tiger from '../../../assets/videos/tiger.mp4'
-import waterfall from "../../../assets/videos/waterfall.mp4";
-import hill from "../../../assets/videos/hill.mp4";
+import "swiper/css/thumbs";
+
+import "./banner.css";
 import BannerText from "./BannerText";
 
-const Banner = () => {
+const Bannner = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-pagination-color": "#fff",
+        }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper mb-2 h-full -z-50"
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[FreeMode, Navigation, Thumbs, EffectFade, Autoplay]}
+        effect={"fade"}
+        className="mySwiper2"
       >
         <SwiperSlide>
-          <video autoPlay loop muted className="h-[100%] w-full -z-10">
-            <source src={tiger} type="video/mp4" />
-          </video>
-          <div className="banner-text bg-black bg-opacity-70 h-full w-full absolute top-0 left-0">
-            <BannerText
-              title="Sundarbans Safari"
-              subtitle="where nature meets adventure"
-            />
+          <img src="https://i.ibb.co/yVwMNMX/tiger.jpg" />
+          <div className="overlay">
+            <div className="basis-2/3">
+              <BannerText
+                title="Roar with Tigers"
+                desc="Explore the wilderness. Sundarbans: world's largest mangrove forest, teeming with unique wildlife and breathtaking landscapes."
+              />
+            </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide className="-z-10">
-          <video
-            autoPlay
-            loop
-            muted
-            className="background-video w-full h-[100%]"
-          >
-            <source src={hill} type="video/mp4" />
-          </video>
-          <div className="banner-text bg-black bg-opacity-50 h-full w-full absolute top-0 left-0">
-            <BannerText
-              title="Sajek Valley"
-              subtitle="where heaven meets earth"
-            />
+        <SwiperSlide>
+          <img src="https://i.ibb.co/ftY6QpY/beach.jpg" />
+          <div className="overlay">
+            <div className="basis-2/3">
+              <BannerText
+                title="sun sand sea"
+                desc="Golden Sands Beckon: Cox's Bazar, Bangladesh. Discover Asia's longest beach and vibrant coastal charm."
+              />
+            </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide className="-z-10">
-          <video
-            autoPlay
-            loop
-            muted
-            className="background-video h-[100%] w-full"
-          >
-            <source src={waterfall} type="video/mp4" />
-          </video>
-          <div className="banner-text bg-black bg-opacity-50 h-full w-full absolute top-0 left-0">
-            <BannerText
-              title="Bandarban Waterfall"
-              subtitle="nature's liquid poetry"
-            />
+        <SwiperSlide>
+          <img src="https://i.ibb.co/FbLGrLk/waterfall.jpg" />
+          <div className="overlay">
+            <div className="basis-2/3">
+              <BannerText
+                title="Feel the fall"
+                desc="Nature's Cascade Marvels: Bandarban's Enchanting Waterfalls. Immerse in the beauty of pristine cascades amidst lush greenery."
+              />
+            </div>
           </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://i.ibb.co/dGV9MrS/lake.jpg" />
+          <div className="overlay">
+            <div className="basis-2/3">
+              <BannerText
+                title="Like the Lake?"
+                desc="Tranquil Haor and Lakes: Bangladesh's Natural Treasures. Serene expanses offering biodiversity and picturesque landscapes."
+              />
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <img src="https://i.ibb.co/yVwMNMX/tiger.jpg" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://i.ibb.co/ftY6QpY/beach.jpg" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://i.ibb.co/FbLGrLk/waterfall.jpg" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://i.ibb.co/dGV9MrS/lake.jpg" />
         </SwiperSlide>
       </Swiper>
     </>
   );
 };
-
-export default Banner;
+export default Bannner;

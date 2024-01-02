@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../components/title/SectionTitle";
 import Image from "../../../components/image/Image";
 import { Link } from "react-router-dom";
-import BestSellingCard from "./BestSellingCard";
 import axios from "axios";
+import BestSellingCard from "../../../components/card/BestSellingCard";
 
 const BestSelling = () => {
   const [bestSelling, setBestSelling] = useState([]);
@@ -26,7 +26,7 @@ const BestSelling = () => {
         {bestSelling?.map((tour, i) => {
           return (
             <div key={i} className="relative">
-              <BestSellingCard tour={tour} />
+              <BestSellingCard spot={tour} />
             </div>
           );
         })}

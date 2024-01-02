@@ -38,7 +38,7 @@ const SpotCard = ({ spot }) => {
           Hotel
         </p>
         <p className="flex flex-col justify-center items-center">
-          {" "}
+          
           <AiFillCar size={24} />
           Transfer
         </p>
