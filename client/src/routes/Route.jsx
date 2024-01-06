@@ -6,8 +6,6 @@ import About from "../pages/about/About";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Details from "../pages/tour-details/Details";
-import SpotHistory from "../pages/tour-details/spot-history/SpotHistory";
-import TourInfo from "../pages/tour-details/tour-info/TourInfo";
 import DashLayout from "../layouts/DashLayout";
 import Blogs from "../pages/blog/Blogs";
 import BlogDetails from "../pages/blog/BlogDetails";
@@ -29,10 +27,6 @@ const Route = createBrowserRouter([
       {
         path: "/spot/:id",
         element: <Details />,
-        children: [
-          { path: "/spot/:id", element: <TourInfo /> },
-          { path: "/spot/:id/history", element: <SpotHistory /> },
-        ],
       },
       { path: "/place/:category", element: <CategoryPlace /> },
     ],

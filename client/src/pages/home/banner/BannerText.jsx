@@ -8,7 +8,7 @@ const BannerText = ({ title, desc }) => {
     <>
       <div className="text-start text-white">
         <Container>
-          <h1 className="text-8xl capitalize font-bold">{title}</h1>
+          <h1 className="text-4xl md:text-6xl lg:text-8xl capitalize font-bold">{title}</h1>
           <p className="">{desc}</p>
           <Link to="/tours">
             <Button>Explore Now</Button>

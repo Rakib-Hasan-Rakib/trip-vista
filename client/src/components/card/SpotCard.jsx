@@ -55,7 +55,7 @@ const SpotCard = ({ spot }) => {
       </div>
       <div className="flex justify-between items-center">
         <Link to={`/spot/${_id}`}>
-          <button className="border border-sky-500 px-4 py-1 rounded-lg text-sky-500 hover:bg-gray-200 font-semibold">
+          <button className="border bg-sky-500 px-4 py-1 rounded-lg text-white font-semibold hover:shadow-sky-500">
             Details
           </button>
         </Link>

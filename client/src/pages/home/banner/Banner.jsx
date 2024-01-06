@@ -19,6 +19,8 @@ import BannerText from "./BannerText";
 
 const Bannner = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+
   return (
     <>
       <Swiper
@@ -39,7 +41,7 @@ const Bannner = () => {
         <SwiperSlide>
           <img src="https://i.ibb.co/yVwMNMX/tiger.jpg" />
           <div className="overlay">
-            <div className="basis-2/3">
+            <div className="md:basis-2/3">
               <BannerText
                 title="Roar with Tigers"
                 desc="Explore the wilderness. Sundarbans: world's largest mangrove forest, teeming with unique wildlife and breathtaking landscapes."
@@ -50,7 +52,7 @@ const Bannner = () => {
         <SwiperSlide>
           <img src="https://i.ibb.co/ftY6QpY/beach.jpg" />
           <div className="overlay">
-            <div className="basis-2/3">
+            <div className="md:basis-2/3">
               <BannerText
                 title="sun sand sea"
                 desc="Golden Sands Beckon: Cox's Bazar, Bangladesh. Discover Asia's longest beach and vibrant coastal charm."
@@ -61,7 +63,7 @@ const Bannner = () => {
         <SwiperSlide>
           <img src="https://i.ibb.co/FbLGrLk/waterfall.jpg" />
           <div className="overlay">
-            <div className="basis-2/3">
+            <div className="md:basis-2/3">
               <BannerText
                 title="Feel the fall"
                 desc="Nature's Cascade Marvels: Bandarban's Enchanting Waterfalls. Immerse in the beauty of pristine cascades amidst lush greenery."
@@ -72,7 +74,7 @@ const Bannner = () => {
         <SwiperSlide>
           <img src="https://i.ibb.co/dGV9MrS/lake.jpg" />
           <div className="overlay">
-            <div className="basis-2/3">
+            <div className="md:basis-2/3">
               <BannerText
                 title="Like the Lake?"
                 desc="Tranquil Haor and Lakes: Bangladesh's Natural Treasures. Serene expanses offering biodiversity and picturesque landscapes."
@@ -85,7 +87,6 @@ const Bannner = () => {
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
         slidesPerView={4}
-        freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"

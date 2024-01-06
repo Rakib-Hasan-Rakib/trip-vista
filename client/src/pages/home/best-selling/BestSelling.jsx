@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../components/title/SectionTitle";
-import Image from "../../../components/image/Image";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import BestSellingCard from "../../../components/card/BestSellingCard";
+import SpotCardTwo from "../../../components/card/SpotCardTwo";
+import Container from "../../../components/Container";
 
 const BestSelling = () => {
   const [bestSelling, setBestSelling] = useState([]);
@@ -20,18 +20,19 @@ const BestSelling = () => {
   // todo: responsive this section
 
   return (
-    <div>
+    <Container>
       {SectionTitle("best selling tours from tourza", "know better")}
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 md:gap-3 lg:gap-4 xl:gap-6">
+      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 md:gap-3 lg:gap-16">
         {bestSelling?.map((tour, i) => {
           return (
             <div key={i} className="relative">
-              <BestSellingCard spot={tour} />
+              {/* <BestSellingCard spot={tour} /> */}
+              <SpotCardTwo spot={tour} />
             </div>
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 };
 

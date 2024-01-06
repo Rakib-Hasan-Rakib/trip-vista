@@ -68,7 +68,7 @@ async function run() {
     // get trending tourist spot
     app.get("/spots/trending", async (req, res) => {
       const query = { trending: true };
-      const result = await spotsCollection.find(query).toArray();
+      const result = await spotsCollection.find(query).limit(3).toArray();
       res.send(result);
     });
     // get best selling tours
