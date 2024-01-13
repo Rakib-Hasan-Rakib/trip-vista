@@ -6,7 +6,7 @@ const Sidebar = () => {
     <div className="w-1/5 h-[100vh] bg-red-400 flex flex-col py-12">
       <div>
         <p>My Bookings</p>
-        <p>Favourite Places</p>
+        <Link to="/dashboard/favourites">Favourites</Link>
       </div>
       <div className="mt-auto">
         <Link to="/">Home</Link>

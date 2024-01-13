@@ -4,18 +4,19 @@ import { AuthContext } from "../../providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const Like = ({ placeId }) => {
+const Like = ({ spot }) => {
   const { user } = useContext(AuthContext);
   const [fav, setFav] = useState(false);
   const [favPlace, setFavPlace] = useState([]);
+  console.log(spot)
 
   const handleAddToFav = () => {
     axios
       .post(`${import.meta.env.VITE_BASE_URL}favSpot/${user?.email}`, {
-        placeId,
+        spot,
       })
       .then((data) => {
-        console.log(data.data)
+        console.log(data.data);
         if (data.data.insertedId) {
           toast.success("This item added to your favourite list");
         }
@@ -34,11 +35,16 @@ const Like = ({ placeId }) => {
       })
       .catch((err) => console.log(err));
   }, [user?.email]);
-  // console.log(user);
+  console.log(favPlace);
 
   return (
     <>
-      {favPlace?.map((place, i) => {
+      <AiOutlineHeart
+        onClick={handleAddToFav}
+        size={28}
+        className="absolute top-3 right-3 text-red-500 cursor-pointer"
+      />
+      {/* {favPlace?.map((place, i) => {
         return (
           <div key={i}>
             {place.placeId == placeId || fav ? (
@@ -55,7 +61,7 @@ const Like = ({ placeId }) => {
             )}
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };

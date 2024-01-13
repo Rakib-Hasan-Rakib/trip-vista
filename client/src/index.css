@@ -21,10 +21,10 @@ body {
   background-image: linear-gradient(to bottom right, #0de5a8, #028f76);
 }
 .active {
-  @apply text-sky-500 font-semibold;
+  @apply text-green-500 font-semibold;
 }
 .default {
-  @apply text-white font-semibold;
+  @apply md:text-white font-semibold;
 }
 .btn-danger {
   @apply text-white bg-red-500 hover:bg-red-600 px-8 py-2 rounded-md font-semibold my-2 cursor-pointer capitalize;

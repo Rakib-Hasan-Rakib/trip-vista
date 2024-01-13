@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Menu from "./Menu";
+// import Menu from "./Menu";
 import NavProfile from "./NavProfile";
 import Container from "../../components/Container";
 import "./Navbar.css";
@@ -39,50 +39,52 @@ const Navbar = () => {
           Blog
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) => (isActive ? "active" : "default")}
-        >
-          About
-        </NavLink>
-      </li>
-      <li>
+      <li className="block md:hidden">
         {user ? (
-          <span onClick={() => logOut()}>Logout</span>
+          <NavLink
+            onClick={() => logOut()}
+            className={({ isActive }) => (isActive ? "active" : "default")}
+          >
+            Logout
+          </NavLink>
         ) : (
-          <Link to="/login">Login</Link>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? "active" : "default")}
+          >
+            Login
+          </NavLink>
         )}
       </li>
-      <li onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}>
+      <li onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} className="hidden md:block">
         <NavProfile />
       </li>
       {isProfileMenuOpen && user && (
-        <div className="bg-white flex flex-col absolute top-16 z-50 w-24 md:w-32 rounded-md space-y-1 md:space-y-2 lg:space-y-3">
+        <div className="bg-white flex flex-col absolute top-16 right-0 z-50 w-24 md:w-32 rounded-md space-y-1">
           <Link
             to="/dashboard"
-            className="px-2 md:px-4 py-1 hover:text-yellow-500"
+            className="px-2 md:px-4 py-1 hover:text-green-500"
           >
             Dashboard
           </Link>
           <Link
             onClick={() => logOut()}
-            className="px-2 md:px-4 py-1 hover:text-yellow-500"
+            className="px-2 md:px-4 py-1 hover:text-green-500"
           >
             Logout
           </Link>
         </div>
       )}
       {isProfileMenuOpen && !user && (
-        <div className="bg-white flex flex-col absolute top-16 z-50 w-24 md:w-32 rounded-md space-y-1 md:space-y-2 lg:space-y-3">
+        <div className="bg-white flex flex-col absolute top-16 right-0 z-50 w-24 md:w-32 rounded-md space-y-1">
           <Link
             to="/register"
-            className="px-2 md:px-4 py-1 hover:text-yellow-400"
+            className="px-2 md:px-4 py-1 hover:text-green-400"
           >
             Register
           </Link>
-          <Link to="/login" className="px-2 md:px-4 py-1 hover:text-yellow-400">
-           Login
+          <Link to="/login" className="px-2 md:px-4 py-1 hover:text-green-400">
+            Login
           </Link>
         </div>
       )}
@@ -104,7 +106,7 @@ const Navbar = () => {
                     alt="brand logo"
                     className="w-10 md:w-12 lg:w-14 2xl:w-16 h-10 md:h-12 lg:h-14 2xl:h-16 rounded-full"
                   />
-                  <p className="font-bold text-sky-500 text-lg md:text-xl lg:text-2xl">
+                  <p className="font-bold heading text-lg md:text-xl lg:text-2xl">
                     Tourza
                   </p>
                 </Link>

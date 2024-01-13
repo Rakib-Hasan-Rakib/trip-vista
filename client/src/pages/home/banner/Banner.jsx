@@ -20,13 +20,13 @@ import BannerText from "./BannerText";
 const Bannner = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-
   return (
     <>
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
+          zIndex: "-10",
         }}
         autoplay={{
           delay: 4000,

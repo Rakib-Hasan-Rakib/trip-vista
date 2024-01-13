@@ -2,7 +2,6 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/home/Home";
-import About from "../pages/about/About";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Details from "../pages/tour-details/Details";
@@ -13,6 +12,7 @@ import WriteBlog from "../pages/blog/WriteBlog";
 import PrivateRoute from "./PrivateRoute";
 import CategoryPlace from "../pages/home/category/CategoryPlace";
 import Tours from "../pages/tours/Tours";
+import Favourites from "../dashboard/userDash/Favourites";
 
 const Route = createBrowserRouter([
   {
@@ -23,7 +23,6 @@ const Route = createBrowserRouter([
       { path: "/tours", element: <Tours /> },
       { path: "/blog", element: <Blogs /> },
       { path: "/blog/:id", element: <BlogDetails /> },
-      { path: "/about", element: <About /> },
       {
         path: "/spot/:id",
         element: <Details />,
@@ -33,7 +32,15 @@ const Route = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/dashboard", element: <DashLayout /> },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashLayout />
+      </PrivateRoute>
+    ),
+    children: [{ path: "/dashboard/favourites", element: <Favourites /> }],
+  },
   {
     path: "/writeBlog",
     element: (

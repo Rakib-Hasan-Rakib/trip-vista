@@ -21,7 +21,7 @@ const BestSelling = () => {
 
   return (
     <Container>
-      {SectionTitle("best selling tours from tourza", "know better")}
+      {SectionTitle("best selling tours", "places people like the most")}
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 md:gap-3 lg:gap-16">
         {bestSelling?.map((tour, i) => {
           return (

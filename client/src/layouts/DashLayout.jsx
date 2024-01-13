@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const DashLayout = () => {
   return (
-    <div>
+    <div className="flex gap-4">
       <Sidebar />
       <Outlet />
     </div>

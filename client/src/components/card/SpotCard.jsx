@@ -18,7 +18,7 @@ const SpotCard = ({ spot }) => {
           src={photo}
           alt="image of places"
         />
-        <Like placeId={_id} />
+        <Like spot={spot} />
       </div>
       <div>
         <div className="flex justify-between items-center">
@@ -38,7 +38,6 @@ const SpotCard = ({ spot }) => {
           Hotel
         </p>
         <p className="flex flex-col justify-center items-center">
-          
           <AiFillCar size={24} />
           Transfer
         </p>
@@ -55,7 +54,7 @@ const SpotCard = ({ spot }) => {
       </div>
       <div className="flex justify-between items-center">
         <Link to={`/spot/${_id}`}>
-          <button className="border bg-sky-500 px-4 py-1 rounded-lg text-white font-semibold hover:shadow-sky-500">
+          <button className="border bg-green-500 px-4 py-1 rounded-lg text-white tracking-wider font-semibold hover:bg-green-600 hover:duration-700">
             Details
           </button>
         </Link>

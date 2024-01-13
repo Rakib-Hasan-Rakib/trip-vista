@@ -17,7 +17,12 @@ const Tours = () => {
   return (
     <>
       <Container>
-        {SectionTitle("See where you can go with us","safe, budget friendly tours")}
+        <div className="my-10 md:my-12 lg:my-16">
+          {SectionTitle(
+            "Limitless joy",
+            "safe, budget friendly tours"
+          )}
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-3 lg:gap-4 xl:gap-6">
           {spots?.map((spot, i) => {
             return <SpotCard key={i} spot={spot} />;
