@@ -97,22 +97,41 @@ async function run() {
       res.send(result);
     });
 
+    // app.post("/favSpot/:email", async (req, res) => {
+    //   const email = req.params.email;
+    //   const spot = req.body;
+    //   console.log(spot)
+    //   const query ={spot,["email"]:spot["email"],}
+    //   const existFavSpot = await favSpotsCollection.findOne({
+    //     email: email,
+    //     // place[_id]: placeId,
+    //   });
+    //   if (existFavSpot) {
+    //     res.send({
+    //       exist: "This place is already added to your favourite list",
+    //     });
+    //   } else {
+    //     let likedPlace = { email, placeId };
+    //     const result = await favSpotsCollection.insertOne(likedPlace);
+    //     res.send(result);
+    //   }
+    // });
+
     app.post("/favSpot/:email", async (req, res) => {
       const email = req.params.email;
-      const spot = req.body;
-      console.log(spot)
-      const query ={spot,["email"]:spot["email"],}
-      const existFavSpot = await favSpotsCollection.findOne({
-        email: email,
-        // place[_id]: placeId,
+      const { spot } = req.body;
+      const spotId = spot?._id;
+      const existedSpot = await favSpotsCollection.findOne({
+        placeId: spot._id,
       });
-      if (existFavSpot) {
-        res.send({
-          exist: "This place is already added to your favourite list",
-        });
+      if (existedSpot) {
+        res.send({message:"this place already exist to your favourite list"})
       } else {
-        let likedPlace = { email, placeId };
-        const result = await favSpotsCollection.insertOne(likedPlace);
+        const result = await favSpotsCollection.insertOne({
+          email,
+          spot,
+          placeId: spotId,
+        });
         res.send(result);
       }
     });
@@ -213,9 +232,7 @@ async function run() {
           transactionId: id,
         });
         if (result.deletedCount > 0) {
-          res.redirect(
-            `${process.env.CLIENT_URL}payment/fail/${id}`
-          );
+          res.redirect(`${process.env.CLIENT_URL}payment/fail/${id}`);
         }
       });
     });

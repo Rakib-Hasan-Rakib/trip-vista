@@ -10,23 +10,20 @@ const Like = ({ spot }) => {
   const [favPlace, setFavPlace] = useState([]);
 
   const handleAddToFav = () => {
-    axios
-      .post(`${import.meta.env.VITE_BASE_URL}favSpot/${user?.email}`, {
-        spot,
-      })
-      .then((data) => {
-        console.log(data.data);
-        // if (data.data.insertedId) {
-        //   toast.success("This item added to your favourite list");
-        // }
-        // if (data.data.exist) {
-        //   toast.success(data.data.exist);
-        // }
-      })
-      .catch((err) => console.log(err));
-    setFav(true);
+    if (user) {
+      axios
+        .post(`${import.meta.env.VITE_BASE_URL}favSpot/${user?.email}`, {
+          spot,
+        })
+        .then((data) => {
+          if (data.data.insertedId) {
+            setFav(true);
+            toast.success("This item added to your favourite list");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
-
 
   useEffect(() => {
     axios
@@ -44,10 +41,10 @@ const Like = ({ spot }) => {
         size={28}
         className="absolute top-3 right-3 text-red-500 cursor-pointer"
       />
-      {/* {favPlace?.map((place, i) => {
+      {favPlace?.map((place, i) => {
         return (
           <div key={i}>
-            {place.placeId == placeId || fav ? (
+            {place.placeId == spot._id || fav ? (
               <AiFillHeart
                 size={28}
                 className="absolute top-3 right-3 text-red-500 cursor-pointer"
@@ -61,7 +58,7 @@ const Like = ({ spot }) => {
             )}
           </div>
         );
-      })} */}
+      })}
     </>
   );
 };
