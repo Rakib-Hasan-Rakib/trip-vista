@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const SpotCardTwo = ({ spot }) => {
   const { _id, photo, name, duration, price, location } = spot;
 
-  console.log(spot);
 
   return (
     <>

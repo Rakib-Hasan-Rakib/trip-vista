@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-// const SSLCommerzPayment = require("sslcommerz-lts");
+const SSLCommerzPayment = require("sslcommerz-lts");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// const store_id = process.env.SSL_STORE_ID;
-// const store_passwd = process.env.SSL_STORE_PASS;
-// const is_live = false;
+const store_id = process.env.STORE_ID;
+const store_passwd = process.env.STORE_PASS;
+const is_live = false;
 
 // middleware
 app.use(cors());
@@ -99,10 +99,12 @@ async function run() {
 
     app.post("/favSpot/:email", async (req, res) => {
       const email = req.params.email;
-      const placeId = req.body.placeId;
+      const spot = req.body;
+      console.log(spot)
+      const query ={spot,["email"]:spot["email"],}
       const existFavSpot = await favSpotsCollection.findOne({
         email: email,
-        placeId: placeId,
+        // place[_id]: placeId,
       });
       if (existFavSpot) {
         res.send({
@@ -114,6 +116,7 @@ async function run() {
         res.send(result);
       }
     });
+
     app.get("/favPlace/:email", async (req, res) => {
       const email = req.params.email;
       const result = await favSpotsCollection.find({ email: email }).toArray();
@@ -143,67 +146,79 @@ async function run() {
     });
 
     // order
-    // const tranId = new ObjectId().toString();
-    // app.post("/book", async (req, res) => {
-    //   const userData = req.body;
-    //   const tourDetails = await spotsCollection.findOne({
-    //     _id: new ObjectId(userData?.productId),
-    //   });
-    //   const amount = tourDetails?.price * userData?.quantity;
-    //   const data = {
-    //     total_amount: amount,
-    //     currency: "BDT",
-    //     tran_id: tranId,
-    //     success_url: `http://localhost:3000/booking/success/${tranId}`,
-    //     fail_url: "http://localhost:3030/fail",
-    //     cancel_url: "http://localhost:3030/cancel",
-    //     ipn_url: "http://localhost:3030/ipn",
-    //     shipping_method: "Courier",
-    //     product_name: tourDetails?.name,
-    //     product_category: "Electronic",
-    //     product_profile: "general",
-    //     cus_name: userData?.name,
-    //     cus_email: userData?.email,
-    //     cus_add1: "Dhaka",
-    //     cus_add2: "Dhaka",
-    //     cus_city: "Dhaka",
-    //     cus_state: "Dhaka",
-    //     cus_postcode: "1000",
-    //     cus_country: "Bangladesh",
-    //     cus_phone: userData?.phone,
-    //     cus_fax: "01711111111",
-    //     ship_name: "Customer Name",
-    //     ship_add1: "Dhaka",
-    //     ship_add2: "Dhaka",
-    //     ship_city: "Dhaka",
-    //     ship_state: "Dhaka",
-    //     ship_postcode: 1000,
-    //     ship_country: "Bangladesh",
-    //   };
-    //   const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
-    //   sslcz.init(data).then((apiResponse) => {
-    //     let GatewayPageURL = apiResponse.GatewayPageURL;
-    //     res.send({ url: GatewayPageURL, transactionId: tranId });
-    //     const finalBook = {
-    //       tourDetails,
-    //       isPaid: false,
-    //       transactionId: tranId,
-    //       booked_by: userData?.email,
-    //     };
-    //     const insertedBook = bookingsCollection.insertOne(finalBook);
-    //   });
+    const tranId = new ObjectId().toString();
+    app.post("/book", async (req, res) => {
+      const userData = req.body;
+      const tourDetails = await spotsCollection.findOne({
+        _id: new ObjectId(userData?.productId),
+      });
+      const amount = tourDetails?.price * userData?.quantity;
+      const data = {
+        total_amount: amount,
+        currency: "BDT",
+        tran_id: tranId,
+        success_url: `${process.env.BASE_URL}booking/success/${tranId}`,
+        fail_url: `${process.env.BASE_URL}booking/fail/${tranId}`,
+        cancel_url: "http://localhost:3030/cancel",
+        ipn_url: "http://localhost:3030/ipn",
+        shipping_method: "Courier",
+        product_name: tourDetails?.name,
+        product_category: "Electronic",
+        product_profile: "general",
+        cus_name: userData?.name,
+        cus_email: userData?.email,
+        cus_add1: "Dhaka",
+        cus_add2: "Dhaka",
+        cus_city: "Dhaka",
+        cus_state: "Dhaka",
+        cus_postcode: "1000",
+        cus_country: "Bangladesh",
+        cus_phone: userData?.phone,
+        cus_fax: "01711111111",
+        ship_name: "Customer Name",
+        ship_add1: "Dhaka",
+        ship_add2: "Dhaka",
+        ship_city: "Dhaka",
+        ship_state: "Dhaka",
+        ship_postcode: 1000,
+        ship_country: "Bangladesh",
+      };
+      const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
+      sslcz.init(data).then((apiResponse) => {
+        let GatewayPageURL = apiResponse.GatewayPageURL;
+        res.send({ url: GatewayPageURL, transactionId: tranId });
+        const finalBook = {
+          tourDetails,
+          isPaid: false,
+          transactionId: tranId,
+          booked_by: userData?.email,
+        };
+        const insertedBook = bookingsCollection.insertOne(finalBook);
+      });
 
-    //   app.post("/booking/success/:tranId", async (req, res) => {
-    //     const id = req.params.tranId;
-    //     const result = bookingsCollection.updateOne(
-    //       { transactionId: id },
-    //       { $set: { isPaid: true } }
-    //     );
-    //     if (result.modifiedCount > 0) {
-    //       res.redirect("http://localhost:5173/");
-    //     }
-    //   });
-    // });
+      app.post("/booking/success/:tranId", async (req, res) => {
+        const id = req.params.tranId;
+        const result = await bookingsCollection.updateOne(
+          { transactionId: id },
+          { $set: { isPaid: true } }
+        );
+        if (result.modifiedCount > 0) {
+          res.redirect(`${process.env.CLIENT_URL}payment/success/${id}`);
+        }
+      });
+
+      app.post("/booking/fail/:tranId", async (req, res) => {
+        const id = req.params.tranId;
+        const result = await bookingsCollection.deleteOne({
+          transactionId: id,
+        });
+        if (result.deletedCount > 0) {
+          res.redirect(
+            `${process.env.CLIENT_URL}payment/fail/${id}`
+          );
+        }
+      });
+    });
 
     app.post("/blogs", async (req, res) => {
       const blogData = req.body;

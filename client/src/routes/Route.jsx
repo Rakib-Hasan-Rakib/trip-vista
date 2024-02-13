@@ -13,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import CategoryPlace from "../pages/home/category/CategoryPlace";
 import Tours from "../pages/tours/Tours";
 import Favourites from "../dashboard/userDash/Favourites";
+import PaymentSuccess from "../components/payments/PaymentSuccess";
+import PaymentFail from "../components/payments/PaymentFail";
 
 const Route = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const Route = createBrowserRouter([
         <WriteBlog />
       </PrivateRoute>
     ),
+  },
+  {
+    path: "/payment/success/:tranId",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "/payment/fail/:tranId",
+    element: <PaymentFail />,
   },
 ]);
 

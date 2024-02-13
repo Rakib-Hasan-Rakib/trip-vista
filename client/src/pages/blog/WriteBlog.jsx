@@ -59,7 +59,6 @@ const WriteBlog = () => {
   return (
       <>
       <>
-        {" "}
         <img
           src={blogimgone}
           alt="blog icon"

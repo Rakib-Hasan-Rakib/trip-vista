@@ -17,6 +17,7 @@ const Details = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
+
   return (
     <Container>
       <div className="h-[50vh] relative">
@@ -34,7 +35,9 @@ const Details = () => {
 
       <div className="flex flex-col-reverse lg:flex-row justify-between mt-8 gap-4">
         <div className="basis-1/3">
-          <DetailsForm tourDetails={tourDetails} />
+          <DetailsForm
+            tourDetails={tourDetails}
+          />
         </div>
         <div className="mx-auto basis-1/2 w-full ">
           <Tabs>

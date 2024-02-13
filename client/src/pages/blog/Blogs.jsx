@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import SectionTitle from "../../components/title/SectionTitle";
+import Swal from "sweetalert2";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -30,12 +31,21 @@ const Blogs = () => {
       .catch((error) => console.log(error));
   };
 
+  const handleWriteClick = () => {
+    Swal.fire({
+      title: "Error!",
+      text: "Do you want to continue",
+      icon: "error",
+      confirmButtonText: "Cool",
+    });
+  };
+
   return (
     <Container>
-        {SectionTitle(
-          "Blogs about Tourist spot",
-          "You can also write a blog here"
-        )}
+      {SectionTitle(
+        "Blogs about Tourist spot",
+        "You can also write a blog here"
+      )}
       <div className="flex items-center w-full md:w-1/2 xl:w-1/3 mx-auto my-4 md:my-6 lg:my-10">
         <input
           type="text"
@@ -50,9 +60,9 @@ const Blogs = () => {
           size={36}
         />
       </div>
-      <Link to="/writeBlog">
+      <Link onClick={handleWriteClick} to="/writeBlog">
         <MdEditDocument
-          className="bg-sky-500 text-white p-3 rounded-full fixed top-3/4 right-8 cursor-pointer"
+          className="bg-green-500 text-white p-3 rounded-full fixed top-3/4 right-8 cursor-pointer"
           size={60}
         />
       </Link>

@@ -6,7 +6,6 @@ import axios from "axios";
 import { FaUser, FaPhoneAlt, FaTicketAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-
 const DetailsForm = ({ tourDetails }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -21,33 +20,31 @@ const DetailsForm = ({ tourDetails }) => {
     watch,
     formState: { errors },
   } = useForm();
+
+
   const onSubmit = (data) => {
     const userData = {
       ...data,
       productId: _id,
       email: user?.email,
     };
-    // axios
-    //   .post(`${import.meta.env.VITE_BASE_URL}spot`, userData)
-    //   .then((data) => console.log(data.data))
-    //   .catch((err) => console.log(err));
-    fetch("http://localhost:3000/book", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((res) => res.json())
+
+    axios
+      .post(`${import.meta.env.VITE_BASE_URL}book`, userData)
       .then((data) => {
-        console.log(data);
-        window.location.replace(data?.url);
-        fetch(`http://localhost:3000/booking/success/${data?.transactionId}`, {
-          method: "POST",
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
-      });
+        console.log(data.data);
+        window.location.replace(data.data?.url);
+        // axios
+        //   .post(
+        //     `${import.meta.env.VITE_BASE_URL}booking/success/${
+        //       data?.transactionId
+        //     }`
+        //   )
+        //   .then((data) => console.log(data))
+        //   .catch((err) => console.log(err));
+        
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

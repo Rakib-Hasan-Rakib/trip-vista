@@ -7,7 +7,16 @@ const BlogDetails = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState([]);
 
-  const { image, title, tagLine, description, name, userPhoto,facebook,instagram } = blog;
+  const {
+    image,
+    title,
+    tagLine,
+    description,
+    name,
+    userPhoto,
+    facebook,
+    instagram,
+  } = blog;
 
   axios
     .get(`${import.meta.env.VITE_BASE_URL}blogs/${id}`)
@@ -38,27 +47,41 @@ const BlogDetails = () => {
             </p>
             <div className="space-y-1 md:space-y-2">
               <p className="font-bold text-lg mt-12">Written By</p>
-                <img
-                  src={userPhoto}
-                  alt="author's photo"
-                  className="w-24 md:w-32 rounded-lg"
-                />
-                <p className="font-semibold">{name}</p>
+              <img
+                src={userPhoto}
+                alt="author's photo"
+                className="w-24 md:w-32 rounded-lg"
+              />
+              <p className="font-semibold">{name}</p>
               <div className="flex items-center gap-3">
-                <Link to={facebook} target="_blank" rel="noopener noreferrer" title="visit my facebook profile">
-                  <img
-                    src="https://i.ibb.co/Jypsrh5/facebook-icon.png"
-                    alt="facebook icon"
-                    className="w-8 rounded-full"
-                  />
-                </Link>
-                <Link to={instagram} target="_blank" rel="noopener noreferrer" title="visit my instagram profile">
-                  <img
-                    src="https://i.ibb.co/kKZQKKg/instagram-icon.png"
-                    alt="facebook icon"
-                    className="w-8"
-                  />
-                </Link>
+                {facebook && (
+                  <Link
+                    to={facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="visit my facebook profile"
+                  >
+                    <img
+                      src="https://i.ibb.co/Jypsrh5/facebook-icon.png"
+                      alt="facebook icon"
+                      className="w-8 rounded-full"
+                    />
+                  </Link>
+                )}
+                {instagram && (
+                  <Link
+                    to={instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="visit my instagram profile"
+                  >
+                    <img
+                      src="https://i.ibb.co/kKZQKKg/instagram-icon.png"
+                      alt="facebook icon"
+                      className="w-8"
+                    />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

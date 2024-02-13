@@ -10,12 +10,12 @@ const Blog = ({ blog }) => {
 
   return (
     <>
-      <div className="group  border border-gray-300 rounded-md">
+      <div className="group border border-gray-300 rounded-md overflow-hidden">
         <Link to={`/blog/${_id}`} className="space-y-3 ">
           <img
             src={image}
             alt="spot image"
-            className="w-full h-40 md:h-48 lg:h-60 2xl:h-96 object-cover object-center rounded-md"
+            className="w-full h-40 md:h-48 lg:h-60 2xl:h-96 object-cover object-center rounded-md group-hover:scale-105 duration-500"
           />
           <div className="px-2">
             <div className="pb-2">
@@ -26,7 +26,7 @@ const Blog = ({ blog }) => {
                 <img
                   src={userPhoto}
                   alt="photo of author"
-                  className="w-8 rounded-full"
+                  className="w-10 h-10 object-cover object-center rounded-full"
                 />
               </div>
               <p className="capitalize text-gray-600">

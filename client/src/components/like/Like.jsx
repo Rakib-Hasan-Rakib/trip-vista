@@ -8,7 +8,6 @@ const Like = ({ spot }) => {
   const { user } = useContext(AuthContext);
   const [fav, setFav] = useState(false);
   const [favPlace, setFavPlace] = useState([]);
-  console.log(spot)
 
   const handleAddToFav = () => {
     axios
@@ -17,16 +16,18 @@ const Like = ({ spot }) => {
       })
       .then((data) => {
         console.log(data.data);
-        if (data.data.insertedId) {
-          toast.success("This item added to your favourite list");
-        }
-        if (data.data.exist) {
-          toast.success(data.data.exist);
-        }
+        // if (data.data.insertedId) {
+        //   toast.success("This item added to your favourite list");
+        // }
+        // if (data.data.exist) {
+        //   toast.success(data.data.exist);
+        // }
       })
       .catch((err) => console.log(err));
     setFav(true);
   };
+
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BASE_URL}favPlace/${user?.email}`)
@@ -35,7 +36,6 @@ const Like = ({ spot }) => {
       })
       .catch((err) => console.log(err));
   }, [user?.email]);
-  console.log(favPlace);
 
   return (
     <>
